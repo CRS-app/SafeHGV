@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeHGV Inspection Pro</title>
+  <meta name="description" content="DVSA-compliant HGV walkaround checklist app" />
+  <meta name="author" content="MGX" />
+
+  <meta property="og:title" content="SafeHGV Inspection Pro" />
+  <meta property="og:description" content="DVSA-compliant HGV walkaround checklist app" />
+  <meta property="og:type" content="website" />
+
+  <!-- PWA Support -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="SafeHGV">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-128x128.png">
+  <link rel="icon" href="/assets/logo.svg" type="image/svg+xml">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
+</body>
+
+</html>
